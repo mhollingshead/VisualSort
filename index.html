@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' type='text/css' href='styles.css'/>
+  </head>
+  <body>
+    <script src="main.js"></script>
+    <script src="algorithm_code.js"></script>
+    <table width="95%" height="60px" style="margin: auto;">
+      <tr>
+        <td width="40%" align="left">
+          <div id="key">
+            <div class="square unsorted">
+
+            </div> Unsorted
+            <div class="square current">
+
+            </div> Current
+            <div class="square sorted">
+
+            </div> Sorted
+          </div>
+        </td>
+        <td width="20%" align="center">
+          <div id="title">
+            Insertion Sort
+          </div>
+        </td>
+        <td width="40%" align="right">
+
+        </td>
+      </tr>
+    </table>
+    <div style="position: relative;">
+      <div id="disp_area">
+      </div>
+      <div id="runtime_info" align="left">
+        Sorted <span id="rt_len"></span> elements in <span id="rt_time"></span> seconds with a <span id="rt_speed"></span>ms delay per opperation<br/><br/>
+        Time elapsed without delay: <span id="rt_base"></span>ms<br/>
+        Best case: <span id="rt_best"></span>ms<br/>
+        Worst case: <span id="rt_worst"></span>ms<br/><br/>
+        <div id="peg">•</div><div style="width: 300px; border-bottom: 1px solid #a6a6a6;">
+
+        </div>
+        <table width="300px">
+          <tr>
+            <td width="33%" align="left">
+              Best
+            </td>
+            <td width="33%" align="center">
+              Average
+            </td>
+            <td width="33%" align="right">
+              Worst
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div align="left" style="width: 95%; margin: auto; margin-bottom: 40px;">
+      <button onclick="sort()" class="unsorted"><strong>Sort</strong></button> <button onclick="generateArray()">Randomize Array</button> <button onclick="generateBestCase()">Best Case</button> <button onclick="generateWorstCase()">Worst Case</button>
+    </div>
+    <div id="options">
+      <div class="column" style="width: 49%" align="left">
+        <div class="label" style="width: 85px">
+          Options
+        </div>
+        <div style="margin-bottom: 8px;">
+          Sorting Algorithm
+        </div>
+        <div class="select">
+          <select id="algo" onchange="switchAlgo();">
+              <option value="insertion">insertionSort()</option>
+              <option value="selection">selectionSort()</option>
+              <option value="bubble">bubbleSort()</option>
+          </select>
+          <div class="select_arrow">
+          </div>
+        </div>
+        <table class="algo_information" width="100%">
+          <tr>
+            <td align="center">
+              Best
+            </td>
+            <td align="center">
+              Average
+            </td>
+            <td align="center">
+              Worst
+            </td>
+            <td align="center">
+              Memory
+            </td>
+          </tr>
+          <tr style="font-family: 'Times New Roman'" id="specs">
+            <td align="center" class="black">
+              <i>n</i>
+            </td>
+            <td align="center" class="black">
+              <i>n</i><sup>2</sup>
+            </td>
+            <td align="center" class="black">
+              <i>n</i><sup>2</sup>
+            </td>
+            <td align="center" class="black">
+              1
+            </td>
+          </tr>
+        </table>
+        <div class="breaker">
+
+        </div>
+        Array Size
+        <table width="100%" style="margin-top: 10px; margin-bottom: 10px;">
+          <tr>
+            <td align="right">
+              2
+            </td>
+            <td align="center" width="100%">
+              <input type="range" min="2" max="100" onchange="generateArray()" id="arr_length" style="width: 90%"/>
+            </td>
+            <td align="left">
+              100
+            </td>
+          </tr>
+        </table>
+        Sort Speed
+        <table width="100%" style="margin-top: 10px; margin-bottom: 10px;">
+          <tr>
+            <td align="right">
+              Slow
+            </td>
+            <td align="center" width="100%">
+              <input type="range" min="2" max="200" id="speed" style="width: 90%" value="30"/>
+            </td>
+            <td align="left">
+              Fast
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div style="display: table-cell; width: 2%;">
+
+      </div>
+      <div class="column" style="width: 49%" align="left">
+        <div class="label" style="width: 100px;">
+          Algorithm
+        </div>
+        <div id="insertion_code" class="visible"><span class="selected" onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = insertionc;">C++</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = insertionc;">C</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = insertionjava;">Java</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = insertionpython;">Python</span>
+        </div>
+        <div id="selection_code" class="invisible"><span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = selectionc;">C++</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = selectionc;">C</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = selectionjava;">Java</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = selectionpython;">Python</span>
+        </div>
+        <div id="bubble_code" class="invisible"><span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = bubblec;">C++</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = bubblec;">C</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = bubblejava;">Java</span>
+          <span onclick="document.getElementsByClassName('selected')[0].className='';this.className='selected';document.getElementById('codearea').innerHTML = bubblepython;">Python</span>
+        </div>
+        <div class="breaker">
+
+        </div>
+        <div id="codearea">
+        </div>
+      </div>
+    </div>
+    <script>
+      generateArray();
+      document.getElementById("codearea").innerHTML = insertionc;
+    </script>
+  </body>
+</html>
